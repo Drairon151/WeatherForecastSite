@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Погода</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header class="header flex center">
+
+        <img class="header__logo" src="/img/icons/Smol_Weather_Logo.png">
+
+        <nav class="header__nav nav">
+
+            <ul class="nav__list flex">
+
+                <li class="nav__item">
+                    <a href="#" class="nav__link nav__link--active">Погода</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="#news" class="nav__link">Новости</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="#forecast" class="nav__link">Прогноз</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="#maps" class="nav__link">Карты</a>
+                </li>
+
+            </ul>
+        </nav>
+
+        <button class="button__day-night-theme" theme="day">
+            <img class="button__day-night-theme--icon" src="/img/icons/whiteTheme.png">
+        </button>
+
+        </div>
+
+    </header>
+
+    <main class="main">
+
+        <div class="main__weather-screen">
+
+            <h1 class="weather-screen__title-text">Погода в 
+                <span id="city-name">Смоленске</span>
+            </h1>
+
+            <section class="weather-card flex">
+
+                <div class="weather-card__current-weather weather-card--background">
+
+                    <div class="current-weather__date">
+                        06.08.25 | 20:16
+                    </div>
+
+                    <div class="weather-info">
+
+                        <div class="weather-info-main">
+                            <div class="temperature" value="20">
+                                <span class="weather-item__value" data-weather-info-type="main temp">#</span>
+                                °C
+                            </div>
+
+                            <div data-weather="" class="weather">
+
+                                <div class="weather__icon">
+                                    ⛅
+                                </div>
+
+                                <div class="weather__description">
+                                    <span class="weather-item__value" data-weather-info-type="weather description">#</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <dl>
+
+                            <div class="weather-item flex">
+                                <dt>
+                                    Ощущается как
+                                </dt>
+                                <dd>
+                                    <span class="weather-item__value" data-weather-info-type="main feels_like">#</span>
+                                    °C
+                                </dd>
+                            </div>
+
+                            <div class="weather-item flex">
+                                <dt>
+                                    Скорость ветра
+                                </dt>
+                                <dd>
+                                    <span class="weather-item__value" data-weather-info-type="wind speed">#</span>
+                                    м/с
+                                </dd>
+                            </div>
+                            <div class="weather-item flex">
+                                <dt>
+                                    Давление
+                                </dt>
+                                <dd>
+                                    <span class="weather-item__value" data-weather-info-type="main pressure">#</span>
+                                    мм рт. ст.
+                                </dd>
+                            </div>
+
+                            <div class="weather-item flex">
+                                <dt>
+                                    Влажность
+                                </dt>
+                                <dd>
+                                    <span class="weather-item__value" data-weather-info-type="main humidity">#</span>
+                                    %
+                                </dd>
+                            </div>
+
+                        </dl>
+                        
+                    </div>
+                </div>
+
+                <div class="weather-card__forecast flex">
+                    <div class="weather-forecast__item weather-card--background">
+                        <div class="weather-forecast__date">00.00.00</div>
+                        <div class="weather weather--forecast">
+                        <img class="weather-forecast__icon" src="">
+                        <div class="weather-forecast__description" data-weather-info-type="main humidity">#</div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast__item weather-card--background">
+                        <div class="weather-forecast__date">00.00.00</div>
+                        <div class="weather weather--forecast">
+                        <img class="weather-forecast__icon" src="">
+                        <div class="weather-forecast__description" data-weather-info-type="main humidity">#</div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast__item weather-card--background">
+                        <div class="weather-forecast__date">00.00.00</div>
+                        <div class="weather weather--forecast">
+                        <img class="weather-forecast__icon" src="">
+                        <div class="weather-forecast__description" data-weather-info-type="main humidity">#</div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast__item weather-card--background">
+                        <div class="weather-forecast__date">00.00.00</div>
+                        <div class="weather weather--forecast">
+                        <img class="weather-forecast__icon" src="">
+                        <div class="weather-forecast__description" data-weather-info-type="main humidity">#</div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast__item weather-card--background">
+                        <div class="weather-forecast__date">00.00.00</div>
+                        <div class="weather weather--forecast">
+                        <img class="weather-forecast__icon" src="">
+                        <div class="weather-forecast__description" data-weather-info-type="main humidity">#</div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="ad ad--weather">
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="footer flex center">
+
+        <p>Все права защищены</p>
+
+    </footer>
+
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

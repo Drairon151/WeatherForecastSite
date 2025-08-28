@@ -1,0 +1,163 @@
+/* Fonts */
+@font-face {
+  font-family: "SofiaSans-Regular";
+  src: url("../fonts/SofiaSans-Regular.woff2") format("woff2"),
+       url("../fonts/SofiaSans-Regular.woff") format("woff");
+}
+
+/* light theme */
+:root {
+  --bg: #f8f9fa;
+  --bgV2: #42DCE7;
+  --bgV2Bord: #8DF3FA;
+  --text: #212529;
+  --card-bg: white;
+  --border: #dee2e6;
+  --accent: #007bff;
+}
+
+/* dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #2E3138;
+    --bgV2: #0E666C;
+    --bgV2Bord: #094246;
+    --text: #e9ecef;
+    --card-bg: #1e1e1e;
+    --border: #495057;
+    --accent: #4dabf7;
+  }
+}
+
+
+
+*{
+    margin: 0 auto;
+    text-decoration: none;
+    list-style: none;
+    color: var(--text);
+    font-family: "SofiaSans-Regular";
+}
+
+body{
+    background-color: var(--bg);
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.flex{
+    display: flex;
+}
+
+.center{
+    justify-content: center;
+    align-items: center; 
+}
+
+.header{
+    width: 100%;
+    height: 100px;
+    background-color: var(--bgV2);
+
+}
+
+.header__logo{
+    height: 100px;
+}
+
+.header__nav{
+
+}
+
+.nav__item{
+    padding-left: 10px;
+}
+
+.nav__link{
+    font-size: 20px;
+}
+
+.button__day-night-theme{
+    background-color: none;
+    border: 0px;
+}
+
+.button__day-night-theme--icon{
+    height: 50px;
+    width: 50px;
+}
+
+
+
+
+
+/* Weather-card */
+
+.main__weather-screen{
+    height: 1000px;
+}
+
+.weather-card{
+    /* background-color: var(--bgV2); */
+    width: 100%;
+}
+
+.weather-card__current-weather{
+
+}
+
+.weather-card--background{
+    background-color: var(--bgV2);
+    border: 5px solid var(--bgV2Bord);
+    border-radius: 10px ;
+
+}
+.weather-item {
+  display: contents; /* чтобы dt/dd вели себя как ячейки grid */
+}
+
+
+dt {
+  text-align: left;
+  font-weight: 500;
+}
+
+dd {
+  text-align: right;
+  margin: 0;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.weather-item{
+    
+    text-align: left;
+}
+
+.weather-card__forecast{
+    width: 100%;
+}
+
+.weather-forecast__item{
+
+    margin-left: 5px;
+}
+
+.weather-forecast__icon{
+    height: 100px;
+}
+
+.footer{
+    height: 100px;
+    width: 100%;
+    background: var(--bgV2);
+}
+
