@@ -35,8 +35,8 @@
             </ul>
         </nav>
 
-        <button class="button__day-night-theme" theme="day">
-            <img class="button__day-night-theme--icon" src="/img/icons/whiteTheme.png">
+        <button class="button__light-dark-theme" data-theme="light">
+            <img class="button__light-dark-theme--icon" src="/img/icons/theme-toogle__light.svg">
         </button>
 
         </div>
@@ -48,16 +48,21 @@
         <div class="main__weather-screen">
 
             <h1 class="weather-screen__title-text">Погода в 
-                <span id="city-name">Смоленске</span>
+                <span class="city-name">#</span>
             </h1>
 
             <section class="weather-card flex">
 
                 <div class="weather-card__current-weather weather-card--background">
 
-                    <div class="current-weather__date">
-                        06.08.25 | 20:16
+                    <div class="weather_date-and-icon flex">
+                        <div class="current-weather__date">
+                            ##.##.## | ##:##
+                        </div>
+
+                        <img class="weather__icon" src="">
                     </div>
+
 
                     <div class="weather-info">
 
@@ -68,11 +73,7 @@
                             </div>
 
                             <div data-weather="" class="weather">
-
-                                <div class="weather__icon">
-                                    ⛅
-                                </div>
-
+                                <img class="weather__icon" src="">
                                 <div class="weather__description">
                                     <span class="weather-item__value" data-weather-info-type="weather description">#</span>
                                 </div>
@@ -82,7 +83,6 @@
                         </div>
 
                         <dl>
-
                             <div class="weather-item flex">
                                 <dt>
                                     Ощущается как
@@ -92,7 +92,6 @@
                                     °C
                                 </dd>
                             </div>
-
                             <div class="weather-item flex">
                                 <dt>
                                     Скорость ветра
@@ -121,7 +120,6 @@
                                     %
                                 </dd>
                             </div>
-
                         </dl>
                         
                     </div>

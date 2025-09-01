@@ -2,6 +2,9 @@
 
 // update weather now
 export async function updateWeatherInfoUi(weatherData, itemClassName){
+    let weatherIcon = document.querySelector('.weather__icon')
+    weatherIcon.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
+
     let weatherItems = document.querySelectorAll(itemClassName)
     weatherItems.forEach((weatherItem)=>{
         weatherItem.textContent = takeData(weatherItem,weatherData);
@@ -27,6 +30,11 @@ export async function updateWeatherForecastWeekUi(weatherDataOnWeek,itemClassNam
 
     });
 
+}
+
+export async function updateSityName(weatherData) {
+    let titleText = document.querySelector('.city-name')
+    titleText.textContent = weatherData.name;
 }
 
 function getDailyNoonForecasts(data) {

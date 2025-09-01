@@ -83,8 +83,13 @@ Promise.allSettled(modules)
       
       const { updateWeatherForecastWeekUi } = await import('./ui/weather-card.js');
       await updateWeatherForecastWeekUi(weatherDataOnWeek,".weather-forecast__item");
+
+      const { updateSityName } = await import('./ui/weather-card.js');
+      await updateSityName(weatherDataNow);
       
       const { timer } = await import('./ui/weather-card.js');
       await timer();
+      
+      const { initThemeToggle } = await import('./ui/theme-toggle.js');
+      await initThemeToggle();
   })
-  
