@@ -49,7 +49,7 @@ function takeData(weatherItem, weatherData){
         if(Array.isArray(weatherData)){
             weatherData = weatherData[0]
             // Алгоритм работает так. Он проходит по массиву html элементов с нужным тегом, и на каждой итерации
-            // он проходится по обьекту данных о погоде используя путь описанный в свойсте html элемента 
+            // он проходится по обьекту данных о погоде используя путь описанный в свойсте html элемента
         }
         weatherData = weatherData[typeWeatherInform]
     }

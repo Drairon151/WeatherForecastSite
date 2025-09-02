@@ -11,20 +11,14 @@ export async function initThemeToggle() {
     buttonToogle.addEventListener("click",()=>{changeSiteColorTheme(buttonToogle)})
 }
 
-function changeSiteColorTheme(buttonToogle){
-        const html = document.documentElement;
-        let userTheme = localStorage.getItem('theme');
-        let themeIcon = document.querySelector('.button__light-dark-theme--icon')
-        if(userTheme == "dark"){
-            buttonToogle.dataset.theme = "light";
-            html.setAttribute('data-theme', "light");
-            localStorage.setItem('theme', "light");
-        }else if(userTheme == "light"){
-            buttonToogle.dataset.theme = "dark";
-            html.setAttribute('data-theme', "dark");
-            localStorage.setItem('theme', "dark");
-        }
-        themeIcon.src = `/img/icons/theme-toogle__${userTheme}.svg`
+function changeSiteColorTheme(buttonToogle) {
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme');
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    const themeIcon = document.querySelector('.button__light-dark-theme--icon');
 
+    localStorage.setItem('theme', newTheme);
+    buttonToogle.dataset.theme = newTheme;
+    html.setAttribute('data-theme', newTheme);
+    themeIcon.src = `/img/icons/theme-toogle__${newTheme}.svg`;
 }
-
