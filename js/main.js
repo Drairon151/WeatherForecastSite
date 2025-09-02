@@ -6,6 +6,7 @@ const modules = [
   import('./api/weather-api.js'),
   import('./ui/weather-card.js'),
   import('./ui/theme-toggle.js'),
+  import('./ui/burger-button.js'),
 ];
 
 Promise.allSettled(modules)
@@ -47,6 +48,9 @@ Promise.allSettled(modules)
 
       const { initThemeToggle } = await import('./ui/theme-toggle.js');
       await initThemeToggle();
+
+      const { initBurgerButton } = await import('./ui/burger-button.js');
+      await initBurgerButton();
 
     } catch (error) {
       console.error('Ошибка в основном потоке:', error);

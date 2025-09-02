@@ -20,5 +20,5 @@ function changeSiteColorTheme(buttonToogle) {
     localStorage.setItem('theme', newTheme);
     buttonToogle.dataset.theme = newTheme;
     html.setAttribute('data-theme', newTheme);
-    themeIcon.src = `/img/icons/theme-toogle__${newTheme}.svg`;
+    themeIcon.src = `img/icons/theme-toogle__${newTheme}.svg`;
 }
