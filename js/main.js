@@ -25,8 +25,8 @@ Promise.allSettled(modules)
       const userCity = await getUserCity();
 
       const url = {
-        weatherNow: `http://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
-        weatherOnWeek: `http://api.openweathermap.org/data/2.5/forecast?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
+        weatherNow: `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
+        weatherOnWeek: `https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
       };
 
       const { getWeatherData } = await import('./api/weather-api.js');

@@ -23,7 +23,7 @@ export function getUserCity(){
 )};
 
 async function reverseGeocode(lat, lon){
-    const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`;
+    const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`;
 
     try{
         let response = await fetch(url);
