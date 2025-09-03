@@ -9,9 +9,5 @@ function burgerClick(){
     console.log("burger click")
     burgerIcon.classList.toggle('open');
     navListMobile.classList.toggle('open');
-    // if(burgerButton.classList.contains('open')){
-        
-    // }else{
 
-    // }
 }

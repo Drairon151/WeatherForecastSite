@@ -1,24 +1,31 @@
-export async function initThemeToggle() {
+export function initThemeToggle() {
     const html = document.documentElement;
     let buttonToogle = document.querySelector(".button__light-dark-theme");
     let userTheme = localStorage.getItem('theme');
     if(!userTheme){
-        buttonToogle.dataset.theme = "light";
-        html.setAttribute('data-theme', "light");
-        localStorage.setItem('theme', "light");
+        changeSiteColorTheme("light")
+    }else{
+        changeSiteColorTheme(userTheme)
     }
 
-    buttonToogle.addEventListener("click",()=>{changeSiteColorTheme(buttonToogle)})
+    buttonToogle.addEventListener("click",()=>{changeSiteColorTheme("buttonClick")})
 }
 
-function changeSiteColorTheme(buttonToogle) {
+function changeSiteColorTheme(currentTheme) {
+    const buttonToogle = document.querySelector(".button__light-dark-theme");
     const html = document.documentElement;
-    const currentTheme = localStorage.getItem('theme');
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
     const themeIcon = document.querySelector('.button__light-dark-theme--icon');
-
+    let newTheme
+    if( currentTheme == "buttonClick"){     
+        currentTheme = localStorage.getItem('theme');
+        newTheme = currentTheme === "dark" ? "light" : "dark";
+    }else{
+        newTheme = currentTheme
+    }
     localStorage.setItem('theme', newTheme);
     buttonToogle.dataset.theme = newTheme;
     html.setAttribute('data-theme', newTheme);
-    themeIcon.src = `img/icons/theme-toogle__${newTheme}.svg`;
+    if (themeIcon) {
+        themeIcon.src = `img/icons/theme-toogle__${newTheme}.svg`;
+    }
 }
