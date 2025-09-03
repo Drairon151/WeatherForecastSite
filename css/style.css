@@ -2,7 +2,7 @@
 @font-face {
   font-family: "SofiaSans-Regular";
   src: url("../fonts/SofiaSans-Regular.woff2") format("woff2"),
-       url("../fonts/SofiaSans-Regular.woff") format("woff");
+        url("../fonts/SofiaSans-Regular.woff") format("woff");
 }
 
 /* light theme */
@@ -48,6 +48,12 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
+}
+
+.pop-up_error{
+  width: 100px;
+  height: 100px;
+  background-color: var(--bg);
 }
 
 .flex{

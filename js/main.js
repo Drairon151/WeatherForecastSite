@@ -1,58 +1,75 @@
 console.log("main.js loaded");
 const API_KEY = "5f93c30262e8f2e0bd8023dc9133f911";
 
-// ✅ Правильные пути: от текущей папки (js/) — без "/js/" в начале
 const modules = [
+  import('./browser-navigator.js'),
   import('./api/weather-api.js'),
   import('./ui/weather-card.js'),
   import('./ui/theme-toggle.js'),
   import('./ui/burger-button.js'),
+  import('./ui/popUp-error.js'),
 ];
 
+
 Promise.allSettled(modules)
-  .then(results => {
+  .then(async (results) => {
     results.forEach((result, i) => {
       if (result.status === 'fulfilled') {
-        console.log('✅ Модуль загружен');
+        console.log('Модуль загружен');
       } else {
-        console.error('❌', result.reason);
+        console.error('Ошибка загрузки модуля', result.reason);
       }
     });
-  })
-  .then(async () => {
+
     try {
-      // ✅ Так же: от текущей папки
-      const { getUserCity } = await import('./api/browser-navigator-api.js');
-      const userCity = await getUserCity();
+      const browserNavigator = results[0].status === 'fulfilled' ? results[0].value : null;
+      const weatherApi = results[1].status === 'fulfilled' ? results[1].value : null;
+      const weatherCard = results[2].status === 'fulfilled' ? results[2].value : null;
+      const themeToggle = results[3].status === 'fulfilled' ? results[3].value : null;
+      const burgerButton = results[4].status === 'fulfilled' ? results[4].value : null;
+      const popUpError = results[5].status === 'fulfilled' ? results[5].value : null;
+
+      const { popUpErrorCreate } = popUpError;
+
+      try{
+        const { getUserCity } = browserNavigator;
+        const userCity = await getUserCity();
+      }catch(error){
+        console.warn('Неудалось определить город:',error.message)
+        popUpErrorCreate('Неудалось определить город, введите его вручную');
+      }
 
       const url = {
         weatherNow: `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
         weatherOnWeek: `https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
       };
 
-      const { getWeatherData } = await import('./api/weather-api.js');
+      const { getWeatherData } = weatherApi;
       const weatherDataNow = await getWeatherData(userCity, url.weatherNow);
       const weatherDataOnWeek = await getWeatherData(userCity, url.weatherOnWeek);
 
-      const { updateWeatherInfoUi } = await import('./ui/weather-card.js');
-      await updateWeatherInfoUi(weatherDataNow, ".weather-item__value");
+      const { updateWeatherInfoUi } = weatherCard;
+      updateWeatherInfoUi(weatherDataNow, ".weather-item__value");
 
-      const { updateWeatherForecastWeekUi } = await import('./ui/weather-card.js');
-      await updateWeatherForecastWeekUi(weatherDataOnWeek, ".weather-forecast__item");
+      const { updateWeatherForecastWeekUi } = weatherCard;
+      updateWeatherForecastWeekUi(weatherDataOnWeek, ".weather-forecast__item");
 
-      const { updateSityName } = await import('./ui/weather-card.js');
-      await updateSityName(weatherDataNow);
+      const { updateSityName } = weatherCard;
+      updateSityName(weatherDataNow);
 
-      const { timer } = await import('./ui/weather-card.js');
-      await timer();
+      const { timer } = weatherCard;
+      timer();
 
-      const { initThemeToggle } = await import('./ui/theme-toggle.js');
-      await initThemeToggle();
+      const { initThemeToggle } = themeToggle;
+      initThemeToggle();
 
-      const { initBurgerButton } = await import('./ui/burger-button.js');
-      await initBurgerButton();
+      const { initBurgerButton } = burgerButton;
+      initBurgerButton();
 
     } catch (error) {
-      console.error('Ошибка в основном потоке:', error);
+          console.error('Ошибка в основном потоке:', error);
     }
+  })
+  .catch(err => {
+    console.error('Ошибка при загрузке модулей:', err);
   });
