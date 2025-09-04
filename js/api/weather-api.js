@@ -1,4 +1,4 @@
-export async function getWeatherData(city, url){
+export async function getWeatherData(url){
     try{
         let response = await fetch(url);
         if(!response.ok){

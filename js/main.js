@@ -8,6 +8,7 @@ const modules = [
   import('./ui/theme-toggle.js'),
   import('./ui/burger-button.js'),
   import('./ui/popUp.js'),
+  import('./ui/fallback.js'),
 ];
 
 
@@ -28,9 +29,12 @@ Promise.allSettled(modules)
       const themeToggle = results[3].status === 'fulfilled' ? results[3].value : null;
       const burgerButton = results[4].status === 'fulfilled' ? results[4].value : null;
       const popUpError = results[5].status === 'fulfilled' ? results[5].value : null;
+      const fallback = results[6].status === 'fulfilled' ? results[6].value : null;
+
       const { popUpCreate } = popUpError;
       const { getUserCity } = browserNavigator;
       const { timer } = weatherCard;
+      const {fallbackErrorWeatherFetch} = fallback
       timer();
 
       const { initThemeToggle } = themeToggle;
@@ -48,15 +52,29 @@ Promise.allSettled(modules)
       }
       
       if(userCity !== "clickOutPopUp"){
-        const url = {
-          weatherNow: `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
-          weatherOnWeek: `https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`,
-        };
-
         const { getWeatherData } = weatherApi;
-        const weatherDataNow = await getWeatherData(userCity, url.weatherNow);
-        const weatherDataOnWeek = await getWeatherData(userCity, url.weatherOnWeek);
+        let weatherDataNow;
+        let weatherDataOnWeek;
+      try {
+        weatherDataNow = await getWeatherData(`https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`);
+        weatherDataOnWeek = await getWeatherData(`https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&appid=${API_KEY}&units=metric&lang=ru`);
+      } catch (error) {
+        console.warn("Ошибка запроса данных.\nВозможно некорректное название города", error);
 
+        try {
+          const fallbackData = await fallbackErrorWeatherFetch(
+            getWeatherData,
+            popUpCreate,
+            API_KEY
+            );
+          weatherDataNow = fallbackData.now;
+          weatherDataOnWeek = fallbackData.week;
+        } catch (fallbackError) {
+          userCity = "notFound";
+          console.error("Финальный сбой: не удалось получить данные даже с fallback", fallbackError);
+        }
+      }
+      if(userCity !== "notFound"){
         const { updateWeatherInfoUi } = weatherCard;
         updateWeatherInfoUi(weatherDataNow, ".weather-item__value");
 
@@ -65,7 +83,7 @@ Promise.allSettled(modules)
 
         const { updateSityName } = weatherCard;
         updateSityName(weatherDataNow);
-
+      }
       }
 
     } catch (error) {

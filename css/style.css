@@ -86,6 +86,7 @@ button {
 .pop-up_input{
   margin-bottom: 20px;
 
+  background-color: var(--bg);
   border: 5px solid var(--bgV3Bord);
   border-radius: 5px ;
 }
